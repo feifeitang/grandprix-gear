@@ -1,25 +1,25 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity('Products')
 export class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'product_id' })
   productId: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, name: 'product_name' })
   productName: string;
 
-  @Column('text')
+  @Column('text', { name: 'description' })
   description: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column('decimal', { precision: 10, scale: 2, name: 'price' })
   price: number;
 
-  @Column('int')
+  @Column('int', { name: 'stock_quantity' })
   stockQuantity: number;
 
-  @Column('int')
+  @Column('int', { name: 'category_id' })
   categoryId: number;
 
-  @Column('int')
+  @Column('int', { name: 'supplier_id' })
   supplierId: number;
 }

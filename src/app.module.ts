@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductsController } from './products/products.controller';
+import { ProductsModule } from './products/products.module';
 import { CartController } from './cart/cart.controller';
 import { CheckoutController } from './checkout/checkout.controller';
 import { Category } from './entities/category.entity';
@@ -32,13 +32,9 @@ import { User } from './entities/user.entity';
         synchronize: true,
       }),
     }),
+    ProductsModule,
   ],
-  controllers: [
-    AppController,
-    ProductsController,
-    CartController,
-    CheckoutController,
-  ],
+  controllers: [AppController, CartController, CheckoutController],
   providers: [AppService],
 })
 export class AppModule {}
