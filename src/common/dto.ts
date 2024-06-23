@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsCreditCard,
   IsIn,
@@ -8,14 +9,29 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+
+export class CreateCartDto {
+  @IsOptional()
+  @IsInt()
+  userId?: number;
+
+  @IsOptional()
+  @IsString()
+  sessionId?: string;
+}
 
 export class CreateCartItemDto {
-  @IsString()
-  productId: string;
+  @IsInt()
+  @IsNotEmpty()
+  cartId: number;
+
+  @IsInt()
+  @IsNotEmpty()
+  productId: number;
 
   @IsInt()
   @Min(1)
+  @IsNotEmpty()
   quantity: number;
 }
 

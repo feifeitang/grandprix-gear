@@ -7,18 +7,32 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { CreateCartItemDto, UpdateCartItemDto } from '../common/dto';
+
+import {
+  CreateCartDto,
+  CreateCartItemDto,
+  UpdateCartItemDto,
+} from '../common/dto';
+
+import { CartService } from './cart.service';
 
 @Controller('cart')
 export class CartController {
+  constructor(private readonly cartService: CartService) {}
+
   @Post()
-  addToCart(@Body() createCartItemDto: CreateCartItemDto) {
-    return 'This action adds a new cart item';
+  async createCart(@Body() createCartDto: CreateCartDto) {
+    return await this.cartService.createCart(createCartDto);
   }
 
-  @Get()
-  getCart() {
-    return 'This action returns all items in cart';
+  @Get(':cartId')
+  async getCart(@Param('cartId') cartId: number) {
+    return await this.cartService.getCart(cartId);
+  }
+
+  @Post('item')
+  async addCartItem(@Body() createCartItemDto: CreateCartItemDto) {
+    return await this.cartService.addCartItem(createCartItemDto);
   }
 
   @Put(':itemId')

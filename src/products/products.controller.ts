@@ -1,4 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
+
 import { ProductsService } from './products.service';
 
 @Controller('products')
@@ -11,7 +12,7 @@ export class ProductsController {
   }
 
   @Get(':productId')
-  getProductById(@Param('productId') productId: string) {
+  getProductById(@Param('productId') productId: number) {
     return this.productsService.findOne(productId);
   }
 }
