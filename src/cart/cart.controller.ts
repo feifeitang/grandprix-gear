@@ -36,15 +36,15 @@ export class CartController {
   }
 
   @Put(':itemId')
-  updateCartItem(
-    @Param('itemId') itemId: string,
+  async updateCartItem(
+    @Param('itemId') itemId: number,
     @Body() updateCartItemDto: UpdateCartItemDto,
   ) {
-    return `This action updates cart item #${itemId}`;
+    return await this.cartService.updateCartItem(itemId, updateCartItemDto);
   }
 
   @Delete(':itemId')
-  removeCartItem(@Param('itemId') itemId: string) {
-    return `This action removes cart item #${itemId}`;
+  async removeCartItem(@Param('itemId') itemId: number) {
+    return await this.cartService.removeCartItem(itemId);
   }
 }

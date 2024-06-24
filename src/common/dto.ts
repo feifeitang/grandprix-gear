@@ -38,6 +38,7 @@ export class CreateCartItemDto {
 export class UpdateCartItemDto {
   @IsInt()
   @Min(1)
+  @IsNotEmpty()
   quantity: number;
 }
 

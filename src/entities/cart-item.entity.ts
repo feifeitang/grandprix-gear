@@ -13,7 +13,4 @@ export class CartItem {
 
   @Column({ nullable: false })
   quantity: number;
-
-  @Column('decimal', { precision: 10, scale: 2, nullable: false })
-  price: number;
 }
